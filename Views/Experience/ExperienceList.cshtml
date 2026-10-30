@@ -1,0 +1,49 @@
+@model List<Experience>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Deneyimler</div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <div class="card-sub">
+                        Deneyimler ile ilgili işlmeleri aşağıdaki panelden yapabilirsin:
+                    </div>
+                    <div class="">
+                        <a asp-controller="Experience" asp-action="CreateExperience" class="btn btn-primary">Yeni Deneyim Ekle <i class="la-plus la"></i></a>
+                    </div>
+                </div>
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">Unvan</th>
+                            <th scope="col">Dönem</th>
+                            <th scope="col">Açıklama</th>
+                            <th scope="col">Sil</th>
+                            <th scope="col">Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@item.ExperienceID</td>
+                                <td>@item.Head</td>
+                                <td>@item.Title</td>
+                                <td>@item.Date</td>
+                                <td>@item.Description</td>
+                                <td><a asp-controller="Experience" asp-action="DeleteExperience" asp-route-id="@item.ExperienceID" class="btn btn-danger">Sil</a></td>
+                                <td><a asp-controller="Experience" asp-action="EditExperience" asp-route-id="@item.ExperienceID" class="btn btn-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

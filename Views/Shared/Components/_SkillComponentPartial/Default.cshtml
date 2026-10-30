@@ -1,0 +1,19 @@
+@model List<Skill>
+<div class="col-six tab-full right">
+    <h3>Programa Dilleri ve Teknolojiler</h3>
+
+    <ul class="skill-bars">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="progress" style="width: @(item.Value)%;"><span>@item.Value%</span></div>
+                <strong>@item.Title</strong>
+            </li>
+        }
+        @* <li>
+            <div class="progress percent95"><span>95%</span></div>
+            <div class="progress" style="width: @(item.Value)%;"><span>@item.Value%</span></div>
+            <strong>PHP</strong>
+        </li> *@
+    </ul>
+</div>

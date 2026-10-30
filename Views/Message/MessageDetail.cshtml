@@ -1,0 +1,36 @@
+@model Message
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Mesaj Detayı</div>
+			</div>
+			<div class="card-body">
+				<h4 class="mb-4">@Model.Subject</h4>
+
+				<dl class="row">
+					<dt class="col-sm-3">Gönderen</dt>
+					<dd class="col-sm-9">@Model.NameSurname</dd>
+
+					<dt class="col-sm-3">E-posta</dt>
+					<dd class="col-sm-9"><a href="mailto:@Model.Email">@Model.Email</a></dd>
+
+					<dt class="col-sm-3">Gönderim tarihi</dt>
+					<dd class="col-sm-9">@Model.SendDate.ToString("dd.MM.yyyy HH:mm")</dd>
+
+					<dt class="col-sm-3">Durum</dt>
+					<dd class="col-sm-9">@(Model.IsRead ? "Okundu" : "Okunmadı")</dd>
+				</dl>
+
+				<hr />
+				<h5>Mesaj</h5>
+				<div style="white-space: pre-wrap; overflow-wrap: anywhere;">@Model.MessageDetail</div>
+
+				<div class="d-flex justify-content-end mt-4">
+					<a asp-controller="Message" asp-action="Inbox" class="btn btn-secondary">Gelen kutusuna dön</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

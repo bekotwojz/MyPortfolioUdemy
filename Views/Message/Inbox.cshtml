@@ -1,0 +1,72 @@
+@model List<Message>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Mesajlar</div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="card-sub">
+                        Mesajlarınızı aşağıda görüntüleyebilirsiniz. Açılmamış mesajlar koyu zeminde görünür:
+                    </div>
+                </div>
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Gönderen</th>
+                            <th scope="col">Konu</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col"  class="text-center">Mesajı aç</th>
+                            <th scope="col"  class="text-center">Durum</th>
+                            <th scope="col" class="text-center">Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string? cls = "";
+                            string? ooi = "";
+                            string? clr = "";
+                            string? mac = "";
+                            if (item.IsRead) // burası okunan mesajlar için
+                            {
+                                cls = "";
+                                ooi = "Okunmadı";
+                                clr = "btn btn-outline-danger";
+                                mac = "btn btn-outline-success";
+                            }
+                            else //burası okunmayan mesajlar için
+                            {
+                                cls = "background-color: #f2f2f2;";
+                                ooi = "Okundu";
+                                clr ="btn btn-outline-success";
+                                mac = "btn btn-success";
+                            }
+
+                            <tr style="@cls">
+
+                                <td>@item.MessageID</td>
+                                <td>@item.NameSurname</td>
+                                <td>@item.Subject</td>
+                                <td>@item.SendDate.ToShortDateString()</td>
+
+                                <td class="text-center">
+                                    <a asp-controller="Message" asp-action="MessageDetail" asp-route-id="@item.MessageID" class="@mac" title="Mesajı aç"><i class="la la-eye"></i></a>
+                                </td>
+
+                                <td class="text-center"><a asp-controller="Message" asp-action="ChangeIsRead" asp-route-id="@item.MessageID" type="button" class="@clr"><i class="la la-edit" aria-hidden="true"></i>@ooi Yap</a></td>
+                                
+                                <td class="text-center"><a asp-controller="Message" asp-action="DeleteMessage" asp-route-id="@item.MessageID" class="btn btn-danger" title="Sil"><i class="la la-trash" aria-hidden="true"></i></a></td>
+                                            
+                            </tr>
+                        }
+                        
+                                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

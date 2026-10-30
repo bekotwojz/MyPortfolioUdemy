@@ -1,0 +1,9 @@
+[Bb]in/
+[Oo]bj/
+.vs/
+.idea/
+*.user
+*.suo
+*.db
+*.sqlite
+.DS_Store
